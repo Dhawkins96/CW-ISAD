@@ -9,6 +9,7 @@
 <body>
     <form id="Profile" runat="server">
         <div>
+            <asp:Label ID="lblUser" runat="server" Text=""></asp:Label>
         </div>
     </form>
 </body>

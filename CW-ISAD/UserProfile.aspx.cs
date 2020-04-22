@@ -12,6 +12,7 @@ namespace CW_ISAD
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            lblUser.Text = "Currently Logged User is - " + Session["UserID"].ToString();
         }
     }
 }

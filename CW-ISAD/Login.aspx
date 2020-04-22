@@ -17,6 +17,7 @@
             <asp:Button ID="btnGo" runat="server" OnClick="btnGo_Click" Text="GO" />
         </div>
             <asp:GridView ID="userGV" runat="server"></asp:GridView>
+        <asp:Label ID="error" runat="server" Text=""></asp:Label>
     </form>
 </body>
 </html>

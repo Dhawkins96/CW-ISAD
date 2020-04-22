@@ -12,25 +12,23 @@ namespace CW_ISAD
 {
     public partial class Login : System.Web.UI.Page
     {
+        string connectionString = "SERVER=" + DBcon.SERVER + ";" +
+        "DATABASE=" + DBcon.DATABASE_NAME + ";" + "UID=" +
+        DBcon.USER_NAME + ";" + "PASSWORD=" +
+        DBcon.PASSWORD + ";" + "SslMode=" +
+        DBcon.SslMode + ";";
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
         }
 
         protected void btnGo_Click(object sender, EventArgs e)
         {
+            int userNum = Convert.ToInt32(txtUser.Text);
 
-            int usernum = Convert.ToInt32(txtUser.Text);
-            string connectionString = "SERVER=" + DBcon.SERVER + ";" +
-            "DATABASE=" + DBcon.DATABASE_NAME + ";" + "UID=" +
-            DBcon.USER_NAME + ";" + "PASSWORD=" +
-            DBcon.PASSWORD + ";" + "SslMode=" +
-            DBcon.SslMode + ";";
             using (MySqlConnection connection =
                 new MySqlConnection(connectionString))
             {
-                string query = "select * from isad157_DHawkins.user where `userID`=" + usernum;
+                string query = "select * from isad157_DHawkins.user where userID=" + userNum;
 
                 connection.Open();
 
@@ -41,9 +39,16 @@ namespace CW_ISAD
                 sqlDA.Fill(usersDataTable);
                 userGV.DataSource = usersDataTable;
                 userGV.DataBind();
-                //ddluser.DataSource = usersDataTable;
-                // ddluser.DataTextField = "FirstName";
-                // ddluser.DataBind();
+
+                if (userNum <= 5000)
+                {
+                      Session["UserID"] = txtUser.Text;
+                      Response.Redirect("UserProfile.aspx");
+                }
+                else
+                {
+                    Response.Write("<script>alert('User ID entered incorrectly')</script>");
+                }
             }
         }
     }

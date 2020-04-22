@@ -39,7 +39,7 @@ namespace CW_ISAD
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label User;
+        protected new global::System.Web.UI.WebControls.Label User;
 
         /// <summary>
         /// txtUser control.
@@ -67,5 +67,14 @@ namespace CW_ISAD
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView userGV;
+
+        /// <summary>
+        /// error control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label error;
     }
 }
