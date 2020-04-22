@@ -24,6 +24,24 @@ namespace CW_ISAD
         protected global::System.Web.UI.HtmlControls.HtmlForm login;
 
         /// <summary>
+        /// Welcome control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Welcome;
+
+        /// <summary>
+        /// User control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label User;
+
+        /// <summary>
         /// txtUser control.
         /// </summary>
         /// <remarks>

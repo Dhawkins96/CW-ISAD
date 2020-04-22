@@ -23,21 +23,18 @@ namespace CW_ISAD
 
             int usernum = Convert.ToInt32(txtUser.Text);
             string connectionString = "SERVER=" + DBcon.SERVER + ";" +
-          "DATABASE=" + DBcon.DATABASE_NAME + ";" + "UID=" +
-          DBcon.USER_NAME + ";" + "PASSWORD=" +
-          DBcon.PASSWORD + ";" + "SslMode=" +
-          DBcon.SslMode + ";";
+            "DATABASE=" + DBcon.DATABASE_NAME + ";" + "UID=" +
+            DBcon.USER_NAME + ";" + "PASSWORD=" +
+            DBcon.PASSWORD + ";" + "SslMode=" +
+            DBcon.SslMode + ";";
             using (MySqlConnection connection =
                 new MySqlConnection(connectionString))
             {
                 string query = "select * from isad157_DHawkins.user where `userID`=" + usernum;
 
-
                 connection.Open();
 
-
                 MySqlCommand cmd = new MySqlCommand(query, connection);
-
 
                 MySqlDataAdapter sqlDA = new MySqlDataAdapter(cmd);
                 DataTable usersDataTable = new DataTable();
@@ -45,8 +42,8 @@ namespace CW_ISAD
                 userGV.DataSource = usersDataTable;
                 userGV.DataBind();
                 //ddluser.DataSource = usersDataTable;
-               // ddluser.DataTextField = "FirstName";
-               // ddluser.DataBind();
+                // ddluser.DataTextField = "FirstName";
+                // ddluser.DataBind();
             }
         }
     }
