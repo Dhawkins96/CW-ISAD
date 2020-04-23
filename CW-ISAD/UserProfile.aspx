@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>User Profile</title>
 </head>
 <body>
     <form id="UserDetails" runat="server">
@@ -24,7 +24,11 @@
             <asp:Label ID="lblWorkName" runat="server" Text="" ></asp:Label><br />
             <asp:Label ID="lblWorkDate" runat="server" Text="" ></asp:Label><br />
         </div>
-        
+         <div>
+             <asp:GridView ID="friends" runat="server"></asp:GridView>
+             
+
+        </div>
     </form>
 </body>
 </html>

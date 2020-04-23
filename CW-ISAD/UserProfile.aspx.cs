@@ -20,18 +20,18 @@ namespace CW_ISAD
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblUser.Text = "Currently Logged User is - " + Convert.ToInt32(Session["UserID"]);
+
             if (!Page.IsPostBack)
             {
                 getData();
+                getFriends();
             }
 
         }
 
         private void getData() 
         {
-
-            lblUser.Text = "Currently Logged User is - " + Convert.ToInt32(Session["UserID"]);
-
             using (MySqlConnection connection =
               new MySqlConnection(connectionString))
             {
@@ -79,6 +79,25 @@ namespace CW_ISAD
                 }
             }
         }
-    
+
+        private void getFriends()
+        {
+            using (MySqlConnection connection =
+                new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                //Gets User information from User table
+                //"SELECT FirstName, LastName from user inner join user_friendship on userID = " + Session["UserID"].ToString() + " " + "WHERE userID = FriendID";
+                string query = "SELECT FirstName, LastName from user inner join friendship on userID_fri = " + Session["UserID"].ToString() + " WHERE friendid = userid";
+                MySqlCommand fricmd = new MySqlCommand (query, connection);
+                MySqlDataAdapter frisqlDA = new MySqlDataAdapter(fricmd);
+                DataTable friuserTable = new DataTable();
+                frisqlDA.Fill(friuserTable);
+
+                friends.DataSource = friuserTable;
+                friends.DataBind();
+            }
+        }
     }
 }
