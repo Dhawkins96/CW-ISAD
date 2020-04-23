@@ -21,24 +21,35 @@ namespace CW_ISAD
         protected void Page_Load(object sender, EventArgs e)
         {
             lblUser.Text = "Currently Logged User is - " + Convert.ToInt32(Session["UserID"]);
+
+            if (Session["UserID"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+            else if (!Page.IsPostBack)
+            {
+                getMessages();
+            }
         }
-        //private void getMessages()
-        //{
-        //    using (MySqlConnection connection =
-        //        new MySqlConnection(connectionString))
-        //    {
-        //        connection.Open();
 
-        //        //Gets Friend information from Friendship table and joins with UserID to grab their full name
-        //        string query = "SELECT FirstName, LastName from user AND select DateTime, Text from messages inner join messages on userID_mess = " + Session["UserID"].ToString() + " WHERE friendid_mess = userid";
-        //        MySqlCommand fricmd = new MySqlCommand(query, connection);
-        //        MySqlDataAdapter frisqlDA = new MySqlDataAdapter(fricmd);
-        //        DataTable friuserTable = new DataTable();
-        //        frisqlDA.Fill(friuserTable);
+        private void getMessages()
+        {
+            using (MySqlConnection connection =
+                new MySqlConnection(connectionString))
+            {
+                connection.Open();
 
-        //        MessagesGV.DataSource = friuserTable;
-        //        MessagesGV.DataBind();
-        //    }
-        //}
+                //Gets Friend information from Friendship table and joins with UserID to grab their full name
+                string query = "SELECT FirstName, LastName, DateTime, Text from user inner join Messages WHERE userID_Mess = " + Session["UserID"].ToString() + " AND (friendID_mess = userid)";
+                   
+                MySqlCommand fricmd = new MySqlCommand(query, connection);
+                MySqlDataAdapter frisqlDA = new MySqlDataAdapter(fricmd);
+                DataTable friuserTable = new DataTable();
+                frisqlDA.Fill(friuserTable);
+
+                MessagesGV.DataSource = friuserTable;
+                MessagesGV.DataBind();
+            }
+        }
     }
 }

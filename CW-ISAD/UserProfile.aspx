@@ -27,8 +27,8 @@
          <div>
              <asp:GridView ID="friends" runat="server"></asp:GridView>
              
-
-        </div>
+         </div>
+   <asp:Button ID="btnMess" runat="server" OnClick="btnMess_Click" Text="Mess" />
     </form>
 </body>
 </html>

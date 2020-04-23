@@ -22,7 +22,12 @@ namespace CW_ISAD
         {
             lblUser.Text = "Currently Logged User is - " + Convert.ToInt32(Session["UserID"]);
 
-            if (!Page.IsPostBack)
+            if (Session["UserID"] == null)
+            {
+
+                Response.Redirect("Login.aspx");
+            }
+            else if (!Page.IsPostBack)
             {
                 getData();
                 getFriends();
@@ -30,7 +35,7 @@ namespace CW_ISAD
 
         }
 
-        private void getData() 
+        private void getData()
         {
             using (MySqlConnection connection =
               new MySqlConnection(connectionString))
@@ -87,10 +92,9 @@ namespace CW_ISAD
             {
                 connection.Open();
 
-                //Gets User information from User table
-                //"SELECT FirstName, LastName from user inner join user_friendship on userID = " + Session["UserID"].ToString() + " " + "WHERE userID = FriendID";
-                string query = "SELECT FirstName, LastName from user inner join friendship on userID_fri = " + Session["UserID"].ToString() + " WHERE friendid = userid";
-                MySqlCommand fricmd = new MySqlCommand (query, connection);
+                //Gets Friend information from Friendship table and join table with user to get their full names
+                string query = "SELECT FirstName, LastName from user inner join friendship on userID_fri = " + Session["UserID"].ToString() + " WHERE userid = FriendID";
+                MySqlCommand fricmd = new MySqlCommand(query, connection);
                 MySqlDataAdapter frisqlDA = new MySqlDataAdapter(fricmd);
                 DataTable friuserTable = new DataTable();
                 frisqlDA.Fill(friuserTable);
@@ -98,6 +102,11 @@ namespace CW_ISAD
                 friends.DataSource = friuserTable;
                 friends.DataBind();
             }
+        }
+
+        protected void btnMess_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Messages.aspx");
         }
     }
 }
