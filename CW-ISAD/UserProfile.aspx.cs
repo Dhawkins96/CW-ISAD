@@ -20,24 +20,65 @@ namespace CW_ISAD
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Page.IsPostBack)
+            {
+                getData();
+            }
+
+        }
+
+        private void getData() 
+        {
+
             lblUser.Text = "Currently Logged User is - " + Convert.ToInt32(Session["UserID"]);
 
             using (MySqlConnection connection =
               new MySqlConnection(connectionString))
             {
-                string query = "select * from isad157_DHawkins.user where userID=" + Session["UserID"].ToString();
-
                 connection.Open();
 
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-
+                //Gets User information from User table
+                MySqlCommand cmd = new MySqlCommand("select * from isad157_DHawkins.user where userID=" + Session["UserID"].ToString(), connection);
                 MySqlDataAdapter sqlDA = new MySqlDataAdapter(cmd);
                 DataTable userTable = new DataTable();
                 sqlDA.Fill(userTable);
 
-                gridview.DataSource = userTable;
-                gridview.DataBind();
+                if (userTable.Rows.Count > 0)
+                {
+                    lblFirstName.Text = userTable.Rows[0]["FirstName"].ToString();
+                    lblLastName.Text = userTable.Rows[0]["LastName"].ToString();
+                    lblGender.Text = userTable.Rows[0]["Gender"].ToString();
+                    lblHometown.Text = userTable.Rows[0]["Hometown"].ToString();
+                    lblCity.Text = userTable.Rows[0]["City"].ToString();
+                    lblRelation.Text = userTable.Rows[0]["RelationStatus"].ToString();
+                }
+
+
+                //Gets Education information from Education Table
+                MySqlCommand eduCmd = new MySqlCommand("select * from isad157_DHawkins.education where userID_edu=" + Session["UserID"].ToString(), connection);
+                MySqlDataAdapter DA = new MySqlDataAdapter(eduCmd);
+                DataTable eduTable = new DataTable();
+                DA.Fill(eduTable);
+
+                if (eduTable.Rows.Count > 0)
+                {
+                    lblEduName.Text = eduTable.Rows[0]["EduName"].ToString();
+                    lblEduDate.Text = eduTable.Rows[0]["EduDate"].ToString();
+                }
+
+                //Gets Work information from Workplace Table
+                MySqlCommand workCmd = new MySqlCommand("select * from isad157_DHawkins.workplace where userID_work=" + Session["UserID"].ToString(), connection);
+                MySqlDataAdapter Work = new MySqlDataAdapter(workCmd);
+                DataTable workTable = new DataTable();
+                Work.Fill(workTable);
+
+                if (eduTable.Rows.Count > 0)
+                {
+                    lblWorkName.Text = workTable.Rows[0]["WorkName"].ToString();
+                    lblWorkDate.Text = workTable.Rows[0]["WorkDate"].ToString();
+                }
             }
         }
+    
     }
 }

@@ -12,11 +12,7 @@ namespace CW_ISAD
 {
     public partial class Login : System.Web.UI.Page
     {
-        string connectionString = "SERVER=" + DBcon.SERVER + ";" +
-        "DATABASE=" + DBcon.DATABASE_NAME + ";" + "UID=" +
-        DBcon.USER_NAME + ";" + "PASSWORD=" +
-        DBcon.PASSWORD + ";" + "SslMode=" +
-        DBcon.SslMode + ";";
+
         protected void Page_Load(object sender, EventArgs e)
         {
         }
@@ -25,31 +21,16 @@ namespace CW_ISAD
         {
             int userNum = Convert.ToInt32(txtUser.Text);
 
-            using (MySqlConnection connection =
-                new MySqlConnection(connectionString))
+            if (userNum <= 5000)
             {
-                string query = "select * from isad157_DHawkins.user where userID=" + userNum;
-
-                connection.Open();
-
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-
-                MySqlDataAdapter sqlDA = new MySqlDataAdapter(cmd);
-                DataTable usersDataTable = new DataTable();
-                sqlDA.Fill(usersDataTable);
-                userGV.DataSource = usersDataTable;
-                userGV.DataBind();
-
-                if (userNum <= 5000)
-                {
-                      Session["UserID"] = txtUser.Text;
-                      Response.Redirect("UserProfile.aspx");
-                }
-                else
-                {
-                    Response.Write("<script>alert('User ID entered incorrectly')</script>");
-                }
+                Session["UserID"] = txtUser.Text;
+                Response.Redirect("UserProfile.aspx");
+            }
+            else
+            {
+                Response.Write("<script>alert('User ID entered incorrectly')</script>");
             }
         }
     }
 }
+    
