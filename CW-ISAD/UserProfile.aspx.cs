@@ -20,7 +20,7 @@ namespace CW_ISAD
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblUser.Text = "Currently Logged User is - " + Convert.ToInt32(Session["UserID"]);
+            lblUser.Text = "User - " + Convert.ToInt32(Session["UserID"]);
 
             if (Session["UserID"] == null)
             {
@@ -31,6 +31,8 @@ namespace CW_ISAD
             {
                 getData();
                 getFriends();
+                getMessages();
+               
             }
 
         }
@@ -60,28 +62,24 @@ namespace CW_ISAD
 
 
                 //Gets Education information from Education Table
-                MySqlCommand eduCmd = new MySqlCommand("select * from isad157_DHawkins.education where userID_edu=" + Session["UserID"].ToString(), connection);
+                MySqlCommand eduCmd = new MySqlCommand("select eduName, EduDate from isad157_DHawkins.education where userID_edu=" + Session["UserID"].ToString(), connection);
                 MySqlDataAdapter DA = new MySqlDataAdapter(eduCmd);
                 DataTable eduTable = new DataTable();
                 DA.Fill(eduTable);
 
-                if (eduTable.Rows.Count > 0)
-                {
-                    lblEduName.Text = eduTable.Rows[0]["EduName"].ToString();
-                    lblEduDate.Text = eduTable.Rows[0]["EduDate"].ToString();
-                }
+                gvEdu.DataSource = eduTable;
+                gvEdu.DataBind();
 
                 //Gets Work information from Workplace Table
-                MySqlCommand workCmd = new MySqlCommand("select * from isad157_DHawkins.workplace where userID_work=" + Session["UserID"].ToString(), connection);
+                MySqlCommand workCmd = new MySqlCommand("select WorkName, WorkDate from isad157_DHawkins.workplace where userID_work=" + Session["UserID"].ToString(), connection);
                 MySqlDataAdapter Work = new MySqlDataAdapter(workCmd);
                 DataTable workTable = new DataTable();
                 Work.Fill(workTable);
 
-                if (eduTable.Rows.Count > 0)
-                {
-                    lblWorkName.Text = workTable.Rows[0]["WorkName"].ToString();
-                    lblWorkDate.Text = workTable.Rows[0]["WorkDate"].ToString();
-                }
+                gvWork.DataSource = workTable;
+                gvWork.DataBind();
+
+                connection.Close();
             }
         }
 
@@ -101,12 +99,31 @@ namespace CW_ISAD
 
                 friends.DataSource = friuserTable;
                 friends.DataBind();
+
+                connection.Close();
+            }
+        }
+        private void getMessages()
+        {
+            using (MySqlConnection connection =
+                new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                //Gets Friend information from Friendship table and joins with UserID to grab their full name
+                string query = "SELECT FirstName, LastName, DateTime, Text from user inner join Messages WHERE userID_Mess = " + Session["UserID"].ToString() + " AND (friendID_mess = userid)";
+
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataAdapter sqlDA = new MySqlDataAdapter(cmd);
+                DataTable messTable = new DataTable();
+                sqlDA.Fill(messTable);
+
+                MessagesGV.DataSource = messTable;
+                MessagesGV.DataBind();
+
+                connection.Close();
             }
         }
 
-        protected void btnMess_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Messages.aspx");
-        }
     }
 }

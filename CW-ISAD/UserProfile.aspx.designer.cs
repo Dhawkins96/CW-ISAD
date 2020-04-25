@@ -15,13 +15,13 @@ namespace CW_ISAD
     {
 
         /// <summary>
-        /// UserDetails control.
+        /// Info control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm UserDetails;
+        protected global::System.Web.UI.HtmlControls.HtmlForm Info;
 
         /// <summary>
         /// lblUser control.
@@ -31,6 +31,15 @@ namespace CW_ISAD
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblUser;
+
+        /// <summary>
+        /// lblName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblName;
 
         /// <summary>
         /// lblFirstName control.
@@ -51,6 +60,15 @@ namespace CW_ISAD
         protected global::System.Web.UI.WebControls.Label lblLastName;
 
         /// <summary>
+        /// lblGen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblGen;
+
+        /// <summary>
         /// lblGender control.
         /// </summary>
         /// <remarks>
@@ -58,6 +76,15 @@ namespace CW_ISAD
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblGender;
+
+        /// <summary>
+        /// lblHome control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHome;
 
         /// <summary>
         /// lblHometown control.
@@ -69,6 +96,15 @@ namespace CW_ISAD
         protected global::System.Web.UI.WebControls.Label lblHometown;
 
         /// <summary>
+        /// lblCurrentCity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCurrentCity;
+
+        /// <summary>
         /// lblCity control.
         /// </summary>
         /// <remarks>
@@ -76,6 +112,15 @@ namespace CW_ISAD
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCity;
+
+        /// <summary>
+        /// lblRelStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRelStatus;
 
         /// <summary>
         /// lblRelation control.
@@ -87,40 +132,31 @@ namespace CW_ISAD
         protected global::System.Web.UI.WebControls.Label lblRelation;
 
         /// <summary>
-        /// lblEduName control.
+        /// gvEdu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEduName;
+        protected global::System.Web.UI.WebControls.GridView gvEdu;
 
         /// <summary>
-        /// lblEduDate control.
+        /// gvWork control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEduDate;
+        protected global::System.Web.UI.WebControls.GridView gvWork;
 
         /// <summary>
-        /// lblWorkName control.
+        /// MessagesGV control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblWorkName;
-
-        /// <summary>
-        /// lblWorkDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblWorkDate;
+        protected global::System.Web.UI.WebControls.GridView MessagesGV;
 
         /// <summary>
         /// friends control.
@@ -130,14 +166,5 @@ namespace CW_ISAD
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView friends;
-
-        /// <summary>
-        /// btnMess control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMess;
     }
 }

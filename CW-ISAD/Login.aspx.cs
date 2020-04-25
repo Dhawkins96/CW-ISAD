@@ -19,16 +19,18 @@ namespace CW_ISAD
 
         protected void btnGo_Click(object sender, EventArgs e)
         {
-            int userNum = Convert.ToInt32(txtUser.Text);
-
-            if (userNum <= 5000)
+           if (String.IsNullOrEmpty(txtUser.Text))
+            {
+                Response.Write("<script>alert('Please enter your User ID')</script>");
+            }
+            else if (Convert.ToInt32(txtUser.Text) <= 5000)
             {
                 Session["UserID"] = txtUser.Text;
                 Response.Redirect("UserProfile.aspx");
             }
             else
             {
-                Response.Write("<script>alert('User ID entered incorrectly')</script>");
+                Response.Write("<script>alert('User ID NOT FOUND')</script>");
             }
         }
     }
