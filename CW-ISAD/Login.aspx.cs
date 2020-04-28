@@ -12,25 +12,20 @@ namespace CW_ISAD
 {
     public partial class Login : System.Web.UI.Page
     {
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-        }
-
         protected void btnGo_Click(object sender, EventArgs e)
         {
-           if (String.IsNullOrEmpty(txtUser.Text))
+           if (String.IsNullOrEmpty(txtUser.Text)) //checks to see if textbox is empty
             {
                 Response.Write("<script>alert('Please enter your User ID')</script>");
             }
-            else if (Convert.ToInt32(txtUser.Text) <= 5000)
+            else if (Convert.ToInt32(txtUser.Text) <= 5000) // checks userid is between 0 - 5000
             {
                 Session["UserID"] = txtUser.Text;
                 Response.Redirect("UserProfile.aspx");
             }
             else
             {
-                Response.Write("<script>alert('User ID NOT FOUND')</script>");
+                Response.Write("<script>alert('User ID NOT FOUND')</script>"); //error if the number is outside of 5000
             }
         }
     }

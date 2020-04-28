@@ -24,11 +24,11 @@ namespace CW_ISAD
 
             if (Session["UserID"] == null)
             {
-
-                Response.Redirect("Login.aspx");
+                Response.Redirect("Login.aspx"); // if user has some how got to the userProfile without inputting a userID 
+                                                 // it will send them to the login in page
             }
-            else if (!Page.IsPostBack)
-            {
+            else if (!Page.IsPostBack) 
+            {                                   // gets all the data from the different tables 
                 getData();
                 getFriends();
                 getMessages();
@@ -50,7 +50,7 @@ namespace CW_ISAD
                 DataTable userTable = new DataTable();
                 sqlDA.Fill(userTable);
 
-                if (userTable.Rows.Count > 0)
+                if (userTable.Rows.Count > 0) // put them in the labels
                 {
                     lblFirstName.Text = userTable.Rows[0]["FirstName"].ToString();
                     lblLastName.Text = userTable.Rows[0]["LastName"].ToString();

@@ -17,12 +17,11 @@
         <div class="header">
             <h1>Welcome to Facebook</h1>
         </div>
-
+              <!-- left column -->
         <div class="column left">
             <h2>
                 <asp:Label ID="lblUser" runat="server" Text=""></asp:Label><br />
             </h2>
-
 
             <asp:Label ID="lblName" runat="server" Text="Full Name: " /> <asp:Label ID="lblFirstName" runat="server" Text=""></asp:Label>
             <asp:Label ID="lblLastName" runat="server" Text=""></asp:Label><br />
@@ -39,16 +38,16 @@
 
         </div>
 
-        <!-- Right Column -->
+        <!-- middle column -->
 
         <div class="column middle">
             <h2>Messages</h2>
 
             <asp:GridView ID="MessagesGV" runat="server"></asp:GridView>
 
-
         </div>
 
+        <!-- Right Column -->
         <div class="column right" >
             
             <h2>Friends</h2>
@@ -57,11 +56,6 @@
             </asp:GridView>
                 
         </div>
-
-
-
-        <!-- End Right Column -->
-
 
         <footer class="footer">
             <p>ISAD157</p>
